@@ -116,18 +116,22 @@ public class TowerOfHanoiPanel extends JPanel {
 			Object source = e.getSource();
 			
 			if(source == num_of_disks_field) { //get number of disks, between 0-10
-				int disks = Integer.parseInt(num_of_disks_field.getText());
-				if( disks < 0 || disks > 10) {
-					num_of_disks_field.setText("Numbers from 0 to 10 please.");
-				} else {
-                    num_of_disks = Integer.parseInt(num_of_disks_field.getText());
+				 if(!num_of_disks_field.getText().equals("1")
+	                        && !num_of_disks_field.getText().equals("2") && !num_of_disks_field.getText().equals("3")
+	                        && !num_of_disks_field.getText().equals("4") && !num_of_disks_field.getText().equals("5")
+	                        && !num_of_disks_field.getText().equals("6") && !num_of_disks_field.getText().equals("7")
+	                        && !num_of_disks_field.getText().equals("8") && !num_of_disks_field.getText().equals("9")
+	                        && !num_of_disks_field.getText().equals("10"))
+	                    num_of_disks_field.setText("Nums from 1 to 10 please.");
+	                else {
+	                    num_of_disks = Integer.parseInt(num_of_disks_field.getText());
 
-                    tp.setdisk_num(num_of_disks);
-                    tp.setReset(true);
-                    tp.setReset2(true);
-                    playPressed = false;
-                    tp.repaint();
-                }
+	                    tp.setdisk_num(num_of_disks);
+	                    tp.setReset(true);
+	                    tp.setReset2(true);
+	                    playPressed = false;
+	                    tp.repaint();    
+	                }
 						
 			}
 			
