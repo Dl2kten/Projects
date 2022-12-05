@@ -1,0 +1,19 @@
+Given that s1, s2, s3, s4 are all strings, determine what objects are created in
+following:
+a) Query(s1)|Query(s2) &~ Query(s3)
+
+AndQuery branch1 OrQuery->WordQuery(s1), WordQuery(s2)
+	 branch2 NotQuery->WordQuery(s3)
+
+b) Query(s1)|(Query(s2) &~ Query(s3))
+
+OrQuery -> WordQuery(s1)
+	-> AndQuery -> NotQuery -> WordQuery(s3)
+		    -> WordQuery(s2)
+
+c) (Query(s1)&Query(s2)) | (Query(s3)&Query(s4))
+
+OrQuery -> AndQuery -> WordQuery(s1)
+		    -> WordQuery(s2)
+	-> AndQuery -> WordQuery(s3)
+		    -> WordQuery(s4)

@@ -1,0 +1,12 @@
+Explain which version of findBook you prefer and why.
+
+I prefer using a data structure, using pair to store index and another pair/tuple defeats
+purpose of pair might as well just use tuple, I don't like using the gets for tuple and
+had to use a using statement anyway cause of the memebers of tuple would have made it
+complicated to type out each time. Simpler types with tuple are probably good.
+
+Exercise 17.8: What would happen if we passed Sales_data() as
+the third parameter to accumulate in the last code example in this
+section?
+
+Made no difference, but I didn't use equal_range.

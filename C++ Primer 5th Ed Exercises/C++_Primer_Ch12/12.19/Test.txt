@@ -1,0 +1,6 @@
+The find function does the simplest search. 
+It looks for its argument and returns the index of the 
+first match that is found, or npos if there is no match. 
+You've gotta dance like there's nobody watching, love like
+you'll never be hurt, sing like there's nobody listening,
+and live like it's heaven on earth.

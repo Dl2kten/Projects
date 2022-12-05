@@ -1,0 +1,7 @@
+What changes would your classes need if the
+derived classes had members of type shared_ptr<Query_base> rather
+than of type Query?
+
+Can declare derived classes that before used Query objects to be friends and then
+use constructor initializer to initialize private member shared_ptr<Query_base>, or take
+a shared_ptr<Query_base> as param to constructor and initialize private member

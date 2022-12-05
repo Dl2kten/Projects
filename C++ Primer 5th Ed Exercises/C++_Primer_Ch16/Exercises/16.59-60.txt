@@ -1,0 +1,10 @@
+Exercise 16.59: Assuming s is a string, explain
+svec.emplace_back(s).
+lvalue s passed to function parameter Args&&, Args deduced as string&, string& &&
+collapses to string&, std::forward returns && to type so again string& && collapses
+to string&, passed to string copy constructor
+
+Exercise 16.60: Explain how make_shared (§ 12.1.1) works.
+make_shared probably variadic as can return take different types which means different
+constructors taking different numbers of parameters, returns temp copy assigned to
+shared_ptr, have to dynamically allocate pointer

@@ -1,0 +1,12 @@
+Exercise 17.9: Explain the bit pattern each of the following bitset
+objects contains:
+(a) bitset<64> bitvec(32);
+(b) bitset<32> bv(1010101);
+(c) string bstr; cin >> bstr; bitset<8>bv(bstr);
+
+a) 10 0000 is the bit representation of 32 since bitset is 64, bitvec[6] -> [63], the
+high-order bits will be 0's
+b) 1111 0110 1001 1011 0101 is the bit representation of 1010101, since size of bv is
+greater, the remaining 12 high-order bits will be 0
+c) depends on what user enters into bstr, can only be 0's or 1's, if more than 8
+characters, will only take the 8 starting from right, less filled with 0's

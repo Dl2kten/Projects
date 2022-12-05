@@ -1,0 +1,9 @@
+Explain how the compiler might inline the call to
+the deleter if we used DebugDelete with unique_ptr.
+
+For the destructor code:
+deleter ? deleter(t_ptr) : delete t_ptr;
+
+Could apply the delete code instead
+deleter ? (os << "deleting pointer" << std::endl;
+		delete p;) : delete t_ptr;

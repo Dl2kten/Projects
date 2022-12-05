@@ -1,0 +1,17 @@
+Query q = Query("fiery") & Query("bird") | Query("wind");
+
+a) WordQuery for fiery bird and wind would each call Query constructor, WordQuery constructor
+and Query_base constructor, finishes call in reverse order so that's 9.
+AndQuery and OrQuery would each call their own constructor, Binary_query constructor,
+cand Query_base constructor, finishes call in reverse order, so that's 6.
+Copy constructor for q so total 16 constructors called.
+
+b) q calls rep -> Orquery rep inherits from Binary rep calls lhs.rep and rhs.rep ->
+lhs of Orquery is Andquery which also inherits from Binary rep calls lhs.rep and 
+rhs.rep -> these call two wordquery rep, "fiery" "bird" -> back to rhs of Orquery calls
+wordquery rep, "wind"
+
+c) q calls eval -> Orquery eval -> Orquery lhs eval -> Andquery eval -> Andquery lhs eval
+-> Wordeval("fiery") -> Andquery rhs eval -> Wordeval("bird") -> does and operation and
+calls Query eval -> Orquery rhs eval -> Wordeval("wind") -> does or operation and call
+Query eval returns Query_result obj

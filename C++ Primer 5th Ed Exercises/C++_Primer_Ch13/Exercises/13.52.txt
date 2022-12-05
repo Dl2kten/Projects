@@ -1,0 +1,22 @@
+class HasPtr {
+public:
+// added move constructor
+HasPtr(HasPtr &&p) noexcept : ps(p.ps), i(p.i) {p.ps = 0;}
+// assignment operator is both the move-and copy-assignment operator
+HasPtr& operator=(HasPtr rhs)
+{ swap(*this, rhs); return *this; }
+// other members as in § 13.2.1 (p. 511)
+};
+
+
+hp = hp2; // hp2 is an lvalue; copy constructor used to copy hp2
+copy constructor called rhs = hp2
+-copy hp2, delete rhs, copy hp2 to rhs in the copy constructor
+-swap, copy rhs ptrs to hp1 ptrs and vice versa
+-delete rhs at end of scope
+
+hp = std::move(hp2); // move constructor moves hp2
+move constructor called rhs = std::move(hp2)
+-rhs gets hp2 data members, hp2 ptrs set to valid state
+-swap, uses copy(?), rhs to h1 and vice versa
+-delete rhs at end of scope

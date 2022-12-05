@@ -1,0 +1,20 @@
+Organize the types into an inheritance hierarchy
+C++ language
+
+class memory {} - takes up a chunk of memory
+class types : public memory {} - takes up various chunks of memory depending on different
+types and define how they are read
+class variables: public types {} - takes space and has name 
+class expressions : class variables {} - gets different memory chunks and applies operator
+to form new memory
+class functions : class {} - assemble many variables and expressions
+class memberfunctions : class functions - adds implicit *this
+class class : class memberfunctions {} - adds special member functions constructors etc.
+
+Not sure... maybe division along static memory and temps and heap and other...
+
+15.22
+virtual functions
+
+virtual sizeofmem(bytes)
+virtual memname(string)

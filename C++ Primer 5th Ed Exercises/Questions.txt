@@ -1,0 +1,14 @@
+#ifndef VEC_H
+#define VEC_H
+
+#if DEBUG_LEVEL >= 1
+#include <iostream>
+#endif
+
+#if DEBUG_LEVEL >= 1
+    std::cout << "Vec::Vec()" << std::endl;
+#endif
+
+template <typename T> class Stack {
+  typedef typename T::NotExist StaticAssert;  // used to test if instantiated
+};
