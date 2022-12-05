@@ -1,0 +1,2 @@
+Lessons from a previous algorithms course with exercises implemented in C++.  Covers algorithms such as
+Brute Force, Decrease and Conquer, Divide and Conquer, Graphs, Path Finding, and Dynamic Programming.
