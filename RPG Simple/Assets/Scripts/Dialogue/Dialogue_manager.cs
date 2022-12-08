@@ -122,8 +122,9 @@ public class Dialogue_manager : MonoBehaviour
     /// <param name="item"></param>
     public void sell()
     {
+        Inventory.instance.inventory_items.gold += item.sell_worth;
         Inventory.instance.remove(item);
-        //add gold to player
+        transaction_panel.SetActive(false);
     }
 
     /// <summary>
@@ -142,6 +143,8 @@ public class Dialogue_manager : MonoBehaviour
         buy_animator.SetBool("is_open", false);
         sell_animator.SetBool("is_open", false);
         dialogue_animator.SetBool("is_open", true);
+
+        transaction_panel.SetActive(false);
         count = 3;
         display_next_sentence();
     }

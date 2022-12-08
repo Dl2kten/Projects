@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_stats : Character_stats
 {
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Equipment_manager.instance.on_Equipment_Changed_Call_Back += on_equipment_changed;
     }

@@ -4745,6 +4745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory_UI: {fileID: 1404766248}
   item_parent: {fileID: 1590349850}
+  gold_amount: {fileID: 0}
 --- !u!1 &414861722
 GameObject:
   m_ObjectHideFlags: 0
@@ -8512,8 +8513,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_manager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8090810661724104413, guid: 429912f0803dc2d4e914a88fd6e7447b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429912f0803dc2d4e914a88fd6e7447b, type: 3}
 --- !u!1 &828716261
 GameObject:

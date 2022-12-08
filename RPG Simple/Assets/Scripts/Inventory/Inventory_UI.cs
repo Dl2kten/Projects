@@ -22,11 +22,6 @@ public class Inventory_UI : MonoBehaviour
         //if(inventory_UI!= null )
         //  inventory_UI.SetActive(false);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -54,7 +49,8 @@ public class Inventory_UI : MonoBehaviour
             }
         }
 
-        gold_amount.text = inventory.inventory_items.gold + "g";
+        if(slots.Length > 0)
+            gold_amount.text = inventory.inventory_items.gold + "g";
     }
 
     /// <summary>

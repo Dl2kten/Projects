@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8090810661724104401}
   - component: {fileID: 8090810661724104403}
   - component: {fileID: 8090810661724104402}
-  - component: {fileID: 8090810661724104413}
   m_Layer: 0
   m_Name: Game_manager
   m_TagString: Untagged
@@ -47,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcadafe322337b4ba3932cce00e2081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
+  inventory_items: {fileID: 0}
   inventory_game_objects: []
   space: 20
 --- !u!114 &8090810661724104403
@@ -62,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1792a6900936ea40a72a2b0639caf04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipped_items: {fileID: 0}
   default_items:
   - {fileID: 11400000, guid: 4f0876ae63d3e4d48bc8c2f7a1e4f76f, type: 2}
   - {fileID: 11400000, guid: 9d78113c3f65dc3479e9314e5b34b1db, type: 2}
@@ -81,15 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
---- !u!114 &8090810661724104413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090810661724104406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88293c1ad0207c540a8aab6b8b9737e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  exit_magic_circle: {fileID: 0}
+  level_text: {fileID: 0}
+  enemy_count: 0

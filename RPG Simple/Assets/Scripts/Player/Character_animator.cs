@@ -48,7 +48,14 @@ public class Character_animator : MonoBehaviour
     protected virtual void on_attack()
     {
         animator.SetTrigger("attack");
-        override_controller[replaceable_attack.name] = curr_attack_anim_set[
-            Random.Range(0, curr_attack_anim_set.Length) ]; //chooses random attack animation if multiple
+
+        int attack_index = 0;
+        if(curr_attack_anim_set.Length > 1)
+        {
+            attack_index = Random.Range(0, curr_attack_anim_set.Length);
+        }
+
+        //chooses random attack animation if multiple
+        override_controller[replaceable_attack.name] = curr_attack_anim_set[attack_index]; 
     }
 }
