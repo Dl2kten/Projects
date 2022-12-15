@@ -8,19 +8,16 @@ public class Inventory_UI : MonoBehaviour
     public TextMeshProUGUI gold_amount;
     Inventory inventory;
     Inventory_slot[] slots;
-    Inventory_sell_slot[] sell_slots;
 
     private void Awake()
     {
         inventory = Inventory.instance;
         inventory.on_Item_Change_Call_Back += update_UI;
-        inventory.on_Item_Change_Call_Back += update_sell_ui;
         //get all the Inventory_slot objects
         slots = item_parent.GetComponentsInChildren<Inventory_slot>();
-        sell_slots = item_parent.GetComponentsInChildren<Inventory_sell_slot>();
 
-        //if(inventory_UI!= null )
-        //  inventory_UI.SetActive(false);
+        if(inventory_UI!= null )
+          inventory_UI.SetActive(false);
     }
 
     void Update()
@@ -49,25 +46,7 @@ public class Inventory_UI : MonoBehaviour
             }
         }
 
-        if(slots.Length > 0)
-            gold_amount.text = inventory.inventory_items.gold + "g";
+       gold_amount.text = inventory.inventory_items.gold + "g";
     }
 
-    /// <summary>
-    /// Update ui for selling items
-    /// </summary>
-    void update_sell_ui()
-    {
-        for (var i = 0; i < sell_slots.Length; i++)
-        {
-            if (i < inventory.inventory_items.items.Count)
-            {
-                sell_slots[i].add_item(inventory.inventory_items.items[i]);
-            }
-            else
-            { 
-                sell_slots[i].clear_slot();
-            }
-        }
-    }
 }

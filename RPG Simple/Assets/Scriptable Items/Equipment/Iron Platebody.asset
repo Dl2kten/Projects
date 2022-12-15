@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce658edb12385624e8d969d2d65c86ef, type: 3}
-  m_Name: Sword
+  m_Name: Iron Platebody
   m_EditorClassIdentifier: 
-  name: Sword
-  icon: {fileID: 21300000, guid: dbe98d1259cf86241b1bc0974c899fee, type: 3}
+  name: Iron Platebody
+  icon: {fileID: 21300000, guid: 111d1a8a5955f864397782483950d2d2, type: 3}
   is_default_item: 0
-  sell_worth: 4
-  shop_worth: 0
-  armor_modifier: 0
-  dmg_modifier: 5
-  equip_slot: 4
-  skinned_mesh: {fileID: 3035277276634468531, guid: d2e7aedc86c57374fb2dae1e09eb83c5, type: 3}
-  covered_mesh_regions: 
+  sell_worth: 6
+  shop_worth: 20
+  armor_modifier: 3
+  dmg_modifier: 0
+  equip_slot: 1
+  skinned_mesh: {fileID: 194509986195941621, guid: cafa3c67dee08db48a0cc39afd307e7a, type: 3}
+  covered_mesh_regions: 0100000002000000

@@ -22,7 +22,6 @@ public class Inventory : MonoBehaviour
     public On_item_change on_Item_Change_Call_Back;
 
     public Inventory_items inventory_items;
-    //public List<Item> items = new List<Item>();
     
     //inventory_game_objects tracks the game objects picked up and if removed
     //displays object in scene

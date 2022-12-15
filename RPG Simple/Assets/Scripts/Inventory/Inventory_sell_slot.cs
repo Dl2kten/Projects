@@ -15,7 +15,7 @@ public class Inventory_sell_slot : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds icon to inventory slot
+    /// Adds icon to inventory sell slot
     /// </summary>
     /// <param name="new_item"></param>
     public void add_item(Item new_item)
@@ -28,16 +28,17 @@ public class Inventory_sell_slot : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes icon from inventory slot
+    /// Removes icon from inventory sell slot
     /// </summary>
     public void clear_slot()
     {
         item = null;
         icon.sprite = null;
         icon.enabled = false;
-        text.text = "";
-
-        
+        if (text != null)
+        {
+            text.text = "";
+        }
     }
 
     /// <summary>

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce658edb12385624e8d969d2d65c86ef, type: 3}
-  m_Name: Sword
+  m_Name: Iron Platelegs
   m_EditorClassIdentifier: 
-  name: Sword
-  icon: {fileID: 21300000, guid: dbe98d1259cf86241b1bc0974c899fee, type: 3}
+  name: Iron Platelegs
+  icon: {fileID: 21300000, guid: ed6df12204160fb4f988cfccccfe0874, type: 3}
   is_default_item: 0
   sell_worth: 4
-  shop_worth: 0
-  armor_modifier: 0
-  dmg_modifier: 5
-  equip_slot: 4
-  skinned_mesh: {fileID: 3035277276634468531, guid: d2e7aedc86c57374fb2dae1e09eb83c5, type: 3}
-  covered_mesh_regions: 
+  shop_worth: 15
+  armor_modifier: 3
+  dmg_modifier: 0
+  equip_slot: 2
+  skinned_mesh: {fileID: 6888482395268391921, guid: ba96c89f0e3324e49a1b95db05a7259a, type: 3}
+  covered_mesh_regions: 00000000

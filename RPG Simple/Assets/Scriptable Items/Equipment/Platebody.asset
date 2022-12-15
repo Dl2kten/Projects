@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Platebody
   m_EditorClassIdentifier: 
   name: Platebody
-  icon: {fileID: 21300000, guid: a6a1b11755e974e4bb1cafb8863cb07b, type: 3}
+  icon: {fileID: 21300000, guid: 95d18340f95f6f24e887ee95c67a230c, type: 3}
   is_default_item: 0
+  sell_worth: 5
+  shop_worth: 0
   armor_modifier: 2
   dmg_modifier: 0
-  sell_worth: 5
   equip_slot: 1
   skinned_mesh: {fileID: 194509986195941621, guid: 792fa4c9bbf22384e9cc564f475ac376, type: 3}
   covered_mesh_regions: 0100000002000000

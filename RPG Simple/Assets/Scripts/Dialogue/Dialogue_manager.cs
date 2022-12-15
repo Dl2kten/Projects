@@ -95,6 +95,7 @@ public class Dialogue_manager : MonoBehaviour
     public void buy()
     {
         //subtract cost from gold, if not enough, text box flash red
+        
     }
 
     /// <summary>

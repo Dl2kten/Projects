@@ -7,6 +7,7 @@ public class Item : ScriptableObject
     public Sprite icon = null;
     public bool is_default_item = false;
     public int sell_worth;
+    public int shop_worth;
 
     public virtual void use()
     {

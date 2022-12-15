@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6963538215912855522}
   - component: {fileID: 6666906628280177206}
   m_Layer: 0
-  m_Name: Helmet
+  m_Name: Iron_helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,8 +52,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8abfc5b8c5b2ee443a0a9f12158d6e91, type: 2}
-  - {fileID: 2100000, guid: 388d95fa91bcab2419f1d453f5ffaca9, type: 2}
+  - {fileID: 2100000, guid: 67fd696a366a6fe41ae30785e0ed695e, type: 2}
+  - {fileID: 2100000, guid: 25c975e287824f446a93cf6074de6c06, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
