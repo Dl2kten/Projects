@@ -29,7 +29,8 @@ public class Dialogue_manager : MonoBehaviour
     [SerializeField] private GameObject continue_panel;
     [SerializeField] private GameObject shop_panel;
     [SerializeField] private GameObject choice_panel;
-    [SerializeField] private GameObject transaction_panel;
+    [SerializeField] private GameObject sell_transaction_panel;
+    [SerializeField] private GameObject buy_transaction_panel;
     [SerializeField] private Animator dialogue_animator;
     [SerializeField] private Animator buy_animator;
     [SerializeField] private Animator sell_animator;
@@ -95,7 +96,17 @@ public class Dialogue_manager : MonoBehaviour
     public void buy()
     {
         //subtract cost from gold, if not enough, text box flash red
-        
+        if(Inventory.instance.inventory_items.gold - item.shop_worth >= 0)
+        {
+            Inventory.instance.add(item);
+            buy_transaction_panel.SetActive(false);
+        }else
+        {
+            TextMeshProUGUI[] texts = buy_transaction_panel.GetComponentsInChildren<TextMeshProUGUI>();
+            texts[0].text = "Insufficient funds!";
+            texts[1].text = "Return to shop selection.";
+        }
+
     }
 
     /// <summary>
@@ -125,7 +136,7 @@ public class Dialogue_manager : MonoBehaviour
     {
         Inventory.instance.inventory_items.gold += item.sell_worth;
         Inventory.instance.remove(item);
-        transaction_panel.SetActive(false);
+        sell_transaction_panel.SetActive(false);
     }
 
     /// <summary>
@@ -133,7 +144,8 @@ public class Dialogue_manager : MonoBehaviour
     /// </summary>
     public void no_sell()
     {
-        transaction_panel.SetActive(false);
+        sell_transaction_panel.SetActive(false);
+        buy_transaction_panel.SetActive(false);
     }
 
     /// <summary>
@@ -145,7 +157,8 @@ public class Dialogue_manager : MonoBehaviour
         sell_animator.SetBool("is_open", false);
         dialogue_animator.SetBool("is_open", true);
 
-        transaction_panel.SetActive(false);
+        sell_transaction_panel.SetActive(false);
+        buy_transaction_panel.SetActive(false);
         count = 3;
         display_next_sentence();
     }

@@ -13,7 +13,7 @@ public class Panel_UI : MonoBehaviour
     Inventory_sell_slot[] sell_slots;
     Button[] buttons;
 
-    private void Start()
+    private void Awake()
     {
         inventory = Inventory.instance;
         inventory.on_Item_Change_Call_Back += update_sell_ui;
@@ -31,9 +31,11 @@ public class Panel_UI : MonoBehaviour
         {
             TextMeshProUGUI[] texts = buttons[i].GetComponentsInChildren<TextMeshProUGUI>();
             Item item = buttons[i].GetComponent<Sale_item>().item;
+            Image img = buttons[i].GetComponentInChildren<Sale_item>().icon;
 
             texts[0].text = item.name;
             texts[1].text = item.shop_worth + "g";
+            img.sprite = item.icon;
         }
     }
 
