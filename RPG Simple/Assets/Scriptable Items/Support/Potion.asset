@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Potion
   m_EditorClassIdentifier: 
   name: Potion
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c3f3b14de5e55384cb9d4e9ccb043cc2, type: 3}
   is_default_item: 0
   sell_worth: 1
   shop_worth: 5

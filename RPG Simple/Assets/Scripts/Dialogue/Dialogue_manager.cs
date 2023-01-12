@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Dialogue_manager : MonoBehaviour
@@ -98,13 +99,14 @@ public class Dialogue_manager : MonoBehaviour
         //subtract cost from gold, if not enough, text box flash red
         if(Inventory.instance.inventory_items.gold - item.shop_worth >= 0)
         {
+            Inventory.instance.inventory_items.gold -= item.shop_worth;
             Inventory.instance.add(item);
             buy_transaction_panel.SetActive(false);
         }else
         {
             TextMeshProUGUI[] texts = buy_transaction_panel.GetComponentsInChildren<TextMeshProUGUI>();
             texts[0].text = "Insufficient funds!";
-            texts[1].text = "Return to shop selection.";
+            texts[1].text = "Select another item.";
         }
 
     }
@@ -178,8 +180,8 @@ public class Dialogue_manager : MonoBehaviour
     /// </summary>
     public void yes_selection()
     {
-        //SceneManager.LoadScene next scene
         Debug.Log("Load next scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     /// <summary>

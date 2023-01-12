@@ -1,0 +1,241 @@
+Third_person_movement - under Player_b object
+Functions:
+->right_select()
+	->right click on object with Interactable component, set_focus()
+->set_focus() - Interactable object.on_focus(transform)
+->left_select() 
+	->left click, remove_focus()
+->OnTriggerEnter
+	->display boundary warning if hit boundary wall
+	->load next level if entered mage circle
+
+
+Interactable - base class for interactable items
+Functions:
+-> on_focus(Transform a)
+	->sets is_focus, has_interacted to true, player to a
+-> update() 
+	->if(is_focus && !has_interacted) and if(close enough) interact()
+-> virtual interact()
+	->Debug Log "Interacting" + player.name
+
+
+Item_pickup : Interactable - add to each interactable item, inherits from Interactable
+Functions:
+->override interact()
+	->calls pickup()
+-> pickup()
+	->destroys gameObject
+
+
+Item - blueprint for scriptable objects, create one for each item and drag to public
+Item item in Item_pickup
+Members: string name, Sprite icon, bool is_default_name
+Functions:
+virtual use()
+
+
+Equipment : Item
+Members: public int armor, dmg;  public Equipment_slot equip_slot;
+Functions:
+->override use()
+	->equip item on player and remove from inventory
+public enum Equipment_slot{Head, ...}
+
+
+Equipment_manager - singleton, under Game_manager
+Members: Equipment[] current_equipment,
+Functions:
+->equip(Equipment new_item)
+	->current_equipment[(int)new_item.equip_slot] = new_item //item in proper slot
+->unequip(int slot_index)
+	->unequip equipment at slot_index and place back in inventory
+->unequip_all()
+	->unequip all equipment
+->update()
+	->if press "U" unequip all
+->set_equipment_blend_shapes()
+	->set body blend shapes to 100 so don't poke out of armor
+
+
+Inventory - singleton, under Game_manager
+Functions:
+->add(Item item)
+	->check if inventory full, add and on_Item_Change_Call_Back
+->remove(Item item)
+	->remove and on_Item_Change_Call_Back
+
+
+Inventory_UI - under Canvas, interacts with Inventory, Inventory_slot
+Members: public Transform item_parent;  Inventory_slot[] slots;
+Functions:
+->Start()
+	->inventory.on_Item_Change_Call_Back += update_UI
+->update_UI()
+	->inventory slots add/remove items
+
+Inventory_slot - under Inventory_slot panel, interacts with Item
+Members: public Image icon;  Item item;
+Functions:
+->add_item(Item new_item)
+	->set icon sprite
+->clear_slot()
+	->remove icon sprite
+->on_remove_button() - when remove button clicked
+	->inventory removes item
+->use_item() - when inventory button clicked
+	->item.use
+
+
+Stat - represents a stat like armor, damage
+Members: private int base_value;
+Functions:
+->get_base_value()
+	->returns base_value
+->public void add_modifier(int modifier)
+	->adds modifier from equipment
+->public void remove_modifier(int modifier)
+	->removes modifier added from equipment
+
+
+Character_stats - base class for a character
+Members: public Stat armor, damage, health;  public int curr_health;
+Functions:
+->public void take_dmg(int dmg)
+	->reduce health based on dmg modified by armor
+->public virtual void die()
+	->Will be overriden with animations, drops, etc.
+
+
+Player_stats: Character_stats - for player
+Functions:
+->public void on_equipment_changed(Equipment new_item, Equipment old_item) - added to 
+on_Equipment_Changed_Call_Back delegate
+	->if new_item not null add modifiers, if old_item not null remove modifiers
+
+
+Player_manager - singleton, returns player GameObject
+Members: public GameObject player
+
+
+Enemy_controller - controls enemy movement
+Members: public float look_radius = 10f;  Transform target;  NavMeshAgent agent;
+Functions
+->void face_target()
+	->Rotate enemy to face player
+->update()
+	->enemy chases player if within look_radius
+		->if within stopping distance, enemy attacks player
+
+
+Enemy : Interactable
+Functions:
+->public override void interact
+	->player attacks this enemy
+
+
+Enemy_stats: Character_stats
+Members: public GameObject coins;  List<Collider> ragdoll_parts;  RigidBody body;
+Animator animator;
+Functions:
+->void set_ragdoll_parts()
+	->add colliders from ragdoll to list of ragdoll_parts
+	->set those colliders to non physical, istrigger = true
+->void turn_on_ragdoll()
+	->disable some rigidbody components, capsul collider for enemy modle, animator
+	->enable ragdoll colliders
+->public override void die()
+	->animation, drops
+
+
+Character_combat
+Members: Character_stats my_stats;
+Functions:
+->public void attack(Character_stats targ_stats)
+	->targ_stats takes damage based on my_stats damage
+
+
+Character_animator
+Members: public float state_transition 0.1f;  protected Animator animator, Character_
+combat combat, AnimationClip[] default_attack_anim_set, curr_attack_anim_set,  Animator-
+OverrideController override_controller;  float speed_percentage = 0f; //for enemies 
+there's usually only default attack animations  
+Functions:
+->protected virtual void Start()
+	->Instantiate animator, combat, override_controller, curr_attack_anim_set =
+	default_attack_anim_set
+->protected virtual void Update()
+	->animator sets the value for motion for character, and set bool for whether in
+	combat
+->protected virtual void on_attack()
+	->sets trigger for animator so attack animations are enacted
+
+
+struct Weapon_animations{public Equipment weapon;  public AnimationClip[] clips;}
+Player_animator : Character_animator
+Members: public Weapon_animations[] w_animations;  Dictionary<Equipment, AnimationClip[]>
+weapon_anim_dict; //struct type contains one weapon and its animation clips
+Functions:
+->override Start()
+	->add on_equipment_changed to delegate on_Equipment_Changed_Call_Back
+->void on_equipment_changed(Equipment new_item, Equipment old_item)
+	->if new_item is not null and is weapon
+		->set animator layer index 1 weight to 1, grip weapon
+	->if new_item is null and old_item is weapon
+		->set animator layer index 1 weight to 0, no longer grips
+	->repeat for shield, index is 2
+
+
+Health_UI - ui, health bar for player and enemies
+Members: public GameObject ui_prefab, Transform target; Transform ui;
+    Image health_slider;
+Functions:
+->Start()
+	->Instantiate ui, health_slider, and add on_health_changed to on_Health_Changed
+	event
+->LateUpdate()
+	->set ui position
+->void on_health_changed(int max_health, int curr_health)
+	->set the health_slider to correct health amount
+
+
+Character_info_UI - responsible for Character info panel
+Members:public GameObject char_info_ui;  public Transform equipments;  
+Character_info_slot[] slots;
+Functions:
+->Start()
+	->assign slots, set char_info_ui to not active, add update_ui to 
+	on_Equipment_Changed_Call_Back event
+->Update()
+	->check for "C" pressed, displays character info
+->void update_ui(Equipment new_item, Equipment old_item)
+	->calls Character_info_slot add_equipment and unequip_slot
+
+Character_info_slot
+Members: public Image icon;  Equipment equipment;
+Functions:
+->public void add_equipment(Equipment equipment)
+	->adds equipment to slot for display
+->public void unequip_slot()
+	->unequips equipment, calls equip_manager instance
+	->sets equipment to null, icon enabled to false
+
+
+
+Shop scene
+Dialogue - contains dialogue sentences
+Members: public string name, string[] sentences;
+
+Dialogue_trigger - can be added to npcs, story events
+Members: private Dialogue dialogue
+Functions:
+->Start() - in this case want to appear right at start of shop scene
+	->Dialogue_manager instance start_dialogue(dialogue)
+->can have a method that can be called to start dialogue as well
+
+Dialogue_manager
+
+
+Potion image
+Potion item use
+Scriptable object or playerpref for current level
