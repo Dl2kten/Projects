@@ -53,6 +53,9 @@ public class Character_animator : MonoBehaviour
         if(curr_attack_anim_set.Length > 1)
         {
             attack_index = Random.Range(0, curr_attack_anim_set.Length);
+        } else
+        {
+            attack_index = 0;
         }
 
         //chooses random attack animation if multiple

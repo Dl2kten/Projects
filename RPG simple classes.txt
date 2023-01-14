@@ -239,3 +239,7 @@ Dialogue_manager
 Potion image
 Potion item use
 Scriptable object or playerpref for current level
+Canvas - inventory_display boundary_text character_display pause_menu level_text
+scripts - inventory_ui char_info_ui Pause_menu
+Go over animations
+Character_animator.cs line 62

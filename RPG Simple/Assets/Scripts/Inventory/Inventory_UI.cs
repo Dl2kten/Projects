@@ -9,7 +9,7 @@ public class Inventory_UI : MonoBehaviour
     Inventory inventory;
     Inventory_slot[] slots;
 
-    private void Awake()
+    private void Start()
     {
         inventory = Inventory.instance;
         inventory.on_Item_Change_Call_Back += update_UI;

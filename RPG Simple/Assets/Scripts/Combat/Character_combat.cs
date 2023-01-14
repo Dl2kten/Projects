@@ -67,7 +67,7 @@ public class Character_combat : MonoBehaviour
     */
 
     /// <summary>
-    /// Enemy takes damage when animation event shows attack contact
+    /// Enemy takes damage when animation event shows
     /// </summary>
     public void attack_hit_anim_event()
     {
