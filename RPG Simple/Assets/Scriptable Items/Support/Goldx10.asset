@@ -15,5 +15,5 @@ MonoBehaviour:
   name: Gold_10
   icon: {fileID: 0}
   is_default_item: 0
-  sell_worth: 0
+  sell_worth: 10
   shop_worth: 0

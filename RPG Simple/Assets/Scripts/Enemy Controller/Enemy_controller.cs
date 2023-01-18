@@ -1,9 +1,15 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy_controller : MonoBehaviour
 {
-    public float look_radius = 10f;
+    [SerializeField] private Transform[] way_points;
+    private int curr_point;
+    private float wait_time;
+    private float start_wait_time;
+
+    [SerializeField] private float look_radius;
     Transform target;
     NavMeshAgent agent;
     Character_combat combat;
@@ -14,6 +20,9 @@ public class Enemy_controller : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         target = Player_manager.instance.player.transform;
         combat = GetComponent<Character_combat>();
+        curr_point= 0;
+        start_wait_time = 3f;
+        wait_time = start_wait_time;
     }
 
     // Update is called once per frame
@@ -22,15 +31,47 @@ public class Enemy_controller : MonoBehaviour
         float distance = Vector3.Distance(transform.position, target.position);
         if (distance <= look_radius)
         {
-            face_target();
-            agent.SetDestination(target.position);
-            if (distance <= agent.stoppingDistance + 1)
-            {
-                combat.attack(target.GetComponent<Character_stats>());
-            }
+            engage(distance);
+        } else if(way_points.Length != 0)
+        {
+            patrol();
+        }
+            
+    }
+
+    /// <summary>
+    /// On player detect
+    /// </summary>
+    void engage(float distance)
+    {
+        face_target();
+        agent.SetDestination(target.position);
+            
+        if (distance <= agent.stoppingDistance + 1)
+        {
+            combat.attack(target.GetComponent<Character_stats>());
         }
     }
 
+    /// <summary>
+    /// Have enemy patrol designated area
+    /// </summary>
+    void patrol()
+    {
+        face_target();
+        agent.SetDestination(way_points[curr_point].position);
+        if(agent.remainingDistance <= agent.stoppingDistance) //if within 0.2f of point position
+        {
+            if(wait_time <= 0)
+            {
+                curr_point = (curr_point + 1) % way_points.Length;
+                wait_time = start_wait_time;
+            } else
+            {
+                wait_time -= Time.deltaTime;
+            }
+        }
+    }
 
     /// <summary>
     /// Rotate enemy to face player when close up

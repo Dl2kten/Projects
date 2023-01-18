@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc7112bf9f4def47a109a3bf8757370, type: 3}
   m_Name: Inventory_items
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 35dc70038a5b3fd4a8cd0bc1dc66eaa3, type: 2}
-  - {fileID: 11400000, guid: 334b569dca42fbd41a6c6a01b4e6f27e, type: 2}
-  - {fileID: 11400000, guid: d4db309580b9116458838e791fe78636, type: 2}
-  - {fileID: 11400000, guid: 92346f8cf5267864ab7f63babcabe8c1, type: 2}
-  gold: 32
+  items: []
+  gold: 30

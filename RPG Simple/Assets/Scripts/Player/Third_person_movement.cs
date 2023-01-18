@@ -23,6 +23,11 @@ public class Third_person_movement : MonoBehaviour
     bool is_grounded;
     float turn_smooth_velocity;
 
+    private void Start()
+    {
+        PlayerPrefs player = new PlayerPrefs();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -103,7 +108,8 @@ public class Third_person_movement : MonoBehaviour
 
         if(other.gameObject.name == "Next_level_trigger")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Debug.Log("Next level");
+            SceneManager.LoadScene("Scenes/Shop");
         }
     }
 
